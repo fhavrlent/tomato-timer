@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
-import './App.css';
+import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import Timer from './containers/Timer';
+import Settings from './containers/Settings';
 
-class App extends Component {
-  render() {
-    return (
-      <Container>
-        <Row>
-          <Col sm="12" md={{ size: 8, offset: 2 }} />
-        </Row>
-      </Container>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <header>
+      <Link to="/">Home</Link>
+      <Link to="/about-us">About</Link>
+    </header>
+
+    <main>
+      <Route exact path="/" component={Timer} />
+      <Route exact path="/about-us" component={Settings} />
+    </main>
+  </div>
+);
 
 export default App;
