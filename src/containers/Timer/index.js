@@ -3,7 +3,11 @@ import Timer from './Timer';
 import './Timer.css';
 
 class TimerPage extends Component {
-  state = {};
+  componentWillMount() {
+    if (Notification.permission !== 'denied') {
+      Notification.requestPermission();
+    }
+  }
   render() {
     return <Timer />;
   }

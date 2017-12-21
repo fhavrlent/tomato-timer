@@ -10,6 +10,7 @@ import {
 class Timer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
+      new Notification('Time is up!');
       this.handleStopCount();
     }
   }
@@ -21,9 +22,13 @@ class Timer extends Component {
   };
 
   handleButtonClick = e => {
-    const { startCountDown, counterID } = this.props;
-    clearInterval(counterID);
-    startCountDown({ value: e.target.name, counterID: this.timer() });
+    if (Notification.permission === 'granted') {
+      const { startCountDown, counterID } = this.props;
+      clearInterval(counterID);
+      startCountDown({ value: e.target.name, counterID: this.timer() });
+    } else {
+      Notification.requestPermission();
+    }
   };
 
   handleStopCount = () => {
