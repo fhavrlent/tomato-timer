@@ -12,7 +12,9 @@ class Timer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
       const { type } = this.props;
-      new Notification(type + ' time is up!');
+      if ('Notification' in window) {
+        new Notification(type + ' time is up!');
+      }
       document.title = 'Time is up';
       this.handleStopCount();
     }
@@ -29,7 +31,7 @@ class Timer extends Component {
   };
 
   handleButtonClick = e => {
-    if (Notification.permission === 'granted') {
+    if ('Notification' in window && Notification.permission === 'granted') {
       const { startCountDown, counterID } = this.props;
       clearInterval(counterID);
       startCountDown({
@@ -37,13 +39,14 @@ class Timer extends Component {
         counterID: this.timer(),
         type: e.target.id
       });
-    } else {
+    } else if ('Notification' in window) {
       Notification.requestPermission();
     }
   };
 
   handleStopCount = () => {
     const { stopCountDown, counterID } = this.props;
+    document.title = 'Tomato Timer';
     clearInterval(counterID);
     stopCountDown();
   };

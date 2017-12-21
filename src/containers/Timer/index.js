@@ -4,7 +4,7 @@ import './Timer.css';
 
 class TimerPage extends Component {
   componentWillMount() {
-    if (Notification.permission !== 'denied') {
+    if ('Notification' in window && Notification.permission !== 'denied') {
       Notification.requestPermission();
     }
   }
