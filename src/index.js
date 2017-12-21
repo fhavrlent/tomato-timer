@@ -15,7 +15,7 @@ const target = document.querySelector('#root');
 
 render(
   <Provider store={store}>
-    <BrowserRouter basename="/tomato-timer">
+    <BrowserRouter>
       <div>
         <App>
           <Switch>
