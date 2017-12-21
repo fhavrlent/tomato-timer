@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Count, Control } from '../../components/Timer/';
+import { Count, Control, SecondControl } from '../../components/Timer/';
 import {
   startCountDown,
   countDown,
@@ -40,11 +40,6 @@ class Timer extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <Count timeLeft={timeLeft} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
               <Control
                 pomodoro={pomodoro}
                 smallBreak={smallBreak}
@@ -52,7 +47,18 @@ class Timer extends Component {
                 handleClick={this.handleButtonClick}
               />
             </div>
-            <button onClick={this.handleStopCount}>stop</button>
+          </div>
+          <br />
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <Count timeLeft={timeLeft} />
+            </div>
+          </div>
+          <br />
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <SecondControl clickStop={this.handleStopCount} />
+            </div>
           </div>
         </div>
       </div>
