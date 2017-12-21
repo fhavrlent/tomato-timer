@@ -2,6 +2,7 @@
   "name": "tomato-timer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://fhavrlent.github.io/tomato-timer",
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
     "history": "^4.7.2",
@@ -15,13 +16,17 @@
     "reactstrap": "^5.0.0-alpha.4",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
-    "redux-thunk": "^2.2.0",
-    "unexpected": "^10.36.2"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn run build&&gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.1.0",
+    "unexpected": "^10.36.2"
   }
 }
