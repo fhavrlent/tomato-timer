@@ -14,7 +14,8 @@ const timerReducer = handleActions(
       ...state,
       isCounting: true,
       timeLeft: parseInt(action.payload.value, 0),
-      counterID: action.payload.counterID
+      counterID: action.payload.counterID,
+      type: action.payload.type
     }),
     [actions.countDown]: (state, action) => ({
       ...state,

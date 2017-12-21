@@ -11,13 +11,19 @@ describe('Timer Reducer', () => {
     const stateBefore = {
       isCounting: false,
       timeLeft: 30000,
-      counterID: null
+      counterID: null,
+      type: null
     };
-    const action = startCountDown({ value: 1500000, counterID: 20 });
+    const action = startCountDown({
+      value: 1500000,
+      counterID: 20,
+      type: 'pomodoro'
+    });
     const stateAfter = {
       isCounting: true,
       timeLeft: 1500000,
-      counterID: 20
+      counterID: 20,
+      type: 'pomodoro'
     };
     expect(timerReducer(stateBefore, action), 'to equal', stateAfter);
   });

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Count, Control } from '../../components/Timer/';
+import moment from 'moment';
+import { Count, Control, SecondControl } from '../../components/Timer/';
 import {
   startCountDown,
   countDown,
@@ -10,7 +11,14 @@ import {
 class Timer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
+      const { type } = this.props;
+      new Notification(type + ' time is up!');
+      document.title = 'Time is up';
       this.handleStopCount();
+    }
+    if (nextProps.timeLeft !== this.props.timeLeft) {
+      document.title =
+        parseInt(moment(nextProps.timeLeft).minutes(), 0) + 1 + ' minutes left';
     }
   }
 
@@ -21,9 +29,17 @@ class Timer extends Component {
   };
 
   handleButtonClick = e => {
-    const { startCountDown, counterID } = this.props;
-    clearInterval(counterID);
-    startCountDown({ value: e.target.name, counterID: this.timer() });
+    if (Notification.permission === 'granted') {
+      const { startCountDown, counterID } = this.props;
+      clearInterval(counterID);
+      startCountDown({
+        value: e.target.name,
+        counterID: this.timer(),
+        type: e.target.id
+      });
+    } else {
+      Notification.requestPermission();
+    }
   };
 
   handleStopCount = () => {
@@ -40,11 +56,6 @@ class Timer extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <Count timeLeft={timeLeft} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
               <Control
                 pomodoro={pomodoro}
                 smallBreak={smallBreak}
@@ -52,7 +63,18 @@ class Timer extends Component {
                 handleClick={this.handleButtonClick}
               />
             </div>
-            <button onClick={this.handleStopCount}>stop</button>
+          </div>
+          <br />
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <Count timeLeft={timeLeft} />
+            </div>
+          </div>
+          <br />
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <SecondControl clickStop={this.handleStopCount} />
+            </div>
           </div>
         </div>
       </div>
@@ -62,14 +84,15 @@ class Timer extends Component {
 
 const mapStateToProps = state => {
   const { pomodoro, smallBreak, longBreak } = state.settings;
-  const { timeLeft, isCounting, counterID } = state.timer;
+  const { timeLeft, isCounting, counterID, type } = state.timer;
   return {
     pomodoro,
     smallBreak,
     longBreak,
     timeLeft,
     isCounting,
-    counterID
+    counterID,
+    type
   };
 };
 
