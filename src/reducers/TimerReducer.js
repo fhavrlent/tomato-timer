@@ -12,7 +12,7 @@ const timerReducer = handleActions(
     [actions.startCountDown]: (state, action) => ({
       ...state,
       isCounting: true,
-      timeLeft: action.payload.value * 60000
+      timeLeft: parseInt(action.payload, 0)
     }),
     [actions.countDown]: (state, action) => ({
       ...state,

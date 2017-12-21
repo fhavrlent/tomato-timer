@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom';
 import Timer from './containers/Timer';
 import Settings from './containers/Settings';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
 const target = document.querySelector('#root');
