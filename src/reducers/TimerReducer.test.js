@@ -10,12 +10,14 @@ describe('Timer Reducer', () => {
   it('starts pomodoro session', () => {
     const stateBefore = {
       isCounting: false,
-      timeLeft: 30000
+      timeLeft: 30000,
+      counterID: null
     };
-    const action = startCountDown({ value: 25 });
+    const action = startCountDown({ value: 1500000, counterID: 20 });
     const stateAfter = {
       isCounting: true,
-      timeLeft: 1500000
+      timeLeft: 1500000,
+      counterID: 20
     };
     expect(timerReducer(stateBefore, action), 'to equal', stateAfter);
   });

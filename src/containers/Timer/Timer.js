@@ -10,7 +10,7 @@ import {
 class Timer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
-      this.props.stopCountDown();
+      this.handleStopCount();
     }
   }
 
@@ -21,15 +21,14 @@ class Timer extends Component {
   };
 
   handleButtonClick = e => {
-    const { startCountDown } = this.props;
-    startCountDown(e.target.name);
-    clearInterval(this.timer);
-    this.timer();
+    const { startCountDown, counterID } = this.props;
+    clearInterval(counterID);
+    startCountDown({ value: e.target.name, counterID: this.timer() });
   };
 
-  handleStopClick = e => {
-    const { stopCountDown } = this.props;
-    clearInterval(this.timer);
+  handleStopCount = () => {
+    const { stopCountDown, counterID } = this.props;
+    clearInterval(counterID);
     stopCountDown();
   };
 
@@ -53,7 +52,7 @@ class Timer extends Component {
                 handleClick={this.handleButtonClick}
               />
             </div>
-            <button onClick={this.handleStopClick}>stop</button>
+            <button onClick={this.handleStopCount}>stop</button>
           </div>
         </div>
       </div>
@@ -63,13 +62,14 @@ class Timer extends Component {
 
 const mapStateToProps = state => {
   const { pomodoro, smallBreak, longBreak } = state.settings;
-  const { timeLeft, isCounting } = state.timer;
+  const { timeLeft, isCounting, counterID } = state.timer;
   return {
     pomodoro,
     smallBreak,
     longBreak,
     timeLeft,
-    isCounting
+    isCounting,
+    counterID
   };
 };
 
