@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { Count, Control, SecondControl } from '../../components/Timer/';
 import {
   startCountDown,
@@ -10,8 +11,14 @@ import {
 class Timer extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
-      new Notification('Time is up!');
+      const { type } = this.props;
+      new Notification(type + ' time is up!');
+      document.title = 'Time is up';
       this.handleStopCount();
+    }
+    if (nextProps.timeLeft !== this.props.timeLeft) {
+      document.title =
+        parseInt(moment(nextProps.timeLeft).minutes(), 0) + 1 + ' minutes left';
     }
   }
 
@@ -25,7 +32,11 @@ class Timer extends Component {
     if (Notification.permission === 'granted') {
       const { startCountDown, counterID } = this.props;
       clearInterval(counterID);
-      startCountDown({ value: e.target.name, counterID: this.timer() });
+      startCountDown({
+        value: e.target.name,
+        counterID: this.timer(),
+        type: e.target.id
+      });
     } else {
       Notification.requestPermission();
     }
@@ -73,14 +84,15 @@ class Timer extends Component {
 
 const mapStateToProps = state => {
   const { pomodoro, smallBreak, longBreak } = state.settings;
-  const { timeLeft, isCounting, counterID } = state.timer;
+  const { timeLeft, isCounting, counterID, type } = state.timer;
   return {
     pomodoro,
     smallBreak,
     longBreak,
     timeLeft,
     isCounting,
-    counterID
+    counterID,
+    type
   };
 };
 

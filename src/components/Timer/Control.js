@@ -4,12 +4,19 @@ import { Button } from 'reactstrap';
 const Control = ({ pomodoro, smallBreak, longBreak, handleClick }) => {
   return (
     <div className="text-center">
-      <Button color="success" name={pomodoro} onClick={handleClick} size={'lg'}>
+      <Button
+        color="success"
+        name={pomodoro}
+        onClick={handleClick}
+        size={'lg'}
+        id={'Pomodoro'}
+      >
         Pomodoro
       </Button>{' '}
       <Button
         color="primary"
         name={smallBreak}
+        id="Short Break"
         onClick={handleClick}
         size={'lg'}
       >
@@ -18,6 +25,7 @@ const Control = ({ pomodoro, smallBreak, longBreak, handleClick }) => {
       <Button
         color="secondary"
         name={longBreak}
+        id="Long Break"
         onClick={handleClick}
         size={'lg'}
       >
