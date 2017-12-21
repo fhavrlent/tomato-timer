@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Timer from './Timer';
+import './Timer.css';
 
-class Timer extends Component {
+class TimerPage extends Component {
   state = {};
   render() {
-    return <div />;
+    return <Timer />;
   }
 }
 
-export default Timer;
+export default TimerPage;
