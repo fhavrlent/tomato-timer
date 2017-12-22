@@ -9,6 +9,7 @@ import Timer from './containers/Timer';
 import Settings from './containers/Settings';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootswatch/dist/flatly/bootstrap.min.css';
 import './index.css';
 
 const target = document.querySelector('#root');

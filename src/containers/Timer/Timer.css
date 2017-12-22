@@ -6,12 +6,14 @@
 }
 
 @media all and (max-width: 500px) {
-  .pomodoro-buttons {
+  .pomodoro-buttons,
+  .control-buttons {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
   }
-  .pomodoro-buttons .btn {
+  .pomodoro-buttons .btn,
+  .control-buttons .btn {
     margin: 2px;
   }
 }

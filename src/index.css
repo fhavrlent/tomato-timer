@@ -2,4 +2,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  padding-top: 15px;
+  overflow: hidden;
+}
+
+.btn {
+  min-width: 140px;
 }
