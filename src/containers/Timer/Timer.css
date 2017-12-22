@@ -4,3 +4,14 @@
   justify-content: center;
   height: 100vh;
 }
+
+@media all and (max-width: 500px) {
+  .pomodoro-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+  .pomodoro-buttons .btn {
+    margin: 2px;
+  }
+}

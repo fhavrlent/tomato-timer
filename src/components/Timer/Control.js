@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 
 const Control = ({ pomodoro, smallBreak, longBreak, handleClick }) => {
   return (
-    <div className="text-center">
+    <div className="text-center pomodoro-buttons">
       <Button
         color="success"
         name={pomodoro}
