@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Alert } from 'reactstrap';
 import { Count, Control, SecondControl } from '../../components/Timer/';
@@ -11,6 +12,19 @@ import {
 } from '../../dispatchers/TimerActions';
 
 class Timer extends Component {
+  static propTypes = {
+    pomodoro: PropTypes.number.isRequired,
+    smallBreak: PropTypes.number.isRequired,
+    longBreak: PropTypes.number.isRequired,
+    timeLeft: PropTypes.number.isRequired,
+    isCounting: PropTypes.bool.isRequired,
+    counterID: PropTypes.number,
+    type: PropTypes.string,
+    startCountDown: PropTypes.func.isRequired,
+    countDown: PropTypes.func.isRequired,
+    stopCountDown: PropTypes.func.isRequired
+  };
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
       const { type } = this.props;

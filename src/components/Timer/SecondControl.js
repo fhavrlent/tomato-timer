@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 const SecondControl = ({ clickStop }) => {
@@ -17,6 +18,10 @@ const SecondControl = ({ clickStop }) => {
       </Button>
     </div>
   );
+};
+
+SecondControl.propTypes = {
+  clickStop: PropTypes.func.isRequired
 };
 
 export default SecondControl;

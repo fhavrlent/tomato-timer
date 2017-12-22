@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 const Control = ({ pomodoro, smallBreak, longBreak, handleClick }) => {
@@ -33,6 +34,13 @@ const Control = ({ pomodoro, smallBreak, longBreak, handleClick }) => {
       </Button>{' '}
     </div>
   );
+};
+
+Control.propTypes = {
+  pomodoro: PropTypes.number.isRequired,
+  smallBreak: PropTypes.number.isRequired,
+  longBreak: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired
 };
 
 export default Control;

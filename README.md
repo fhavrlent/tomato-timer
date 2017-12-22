@@ -1,7 +1,11 @@
 # Tomato Timer 🍅
 
-Simple Pomodoro Timer, work in progress as you can see
+Simple Pomodoro Timer, currently in beta version.
 
-* Nothing is working yet
-* I just started
-* Meh?
+* Sessions ✅
+* Browser notifications ✅
+* Sound notification ✅
+
+* Custom Sessions / Settings 𐄂
+* Continue session 𐄂
+* Stats 𐄂

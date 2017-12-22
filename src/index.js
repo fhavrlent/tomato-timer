@@ -13,11 +13,9 @@ const target = document.querySelector('#root');
 
 render(
   <Provider store={store}>
-    <div>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   target
 );

@@ -5,17 +5,15 @@ import { Link } from 'react-router-dom';
 export class Navigation extends Component {
   constructor(props) {
     super(props);
-
-    this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false
     };
   }
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
   render() {
     return (
       <div>
@@ -34,9 +32,11 @@ export class Navigation extends Component {
                   Settings
                 </Link>
               </NavItem>
-              <Link className="nav-link" to="/stats">
-                Stats
-              </Link>
+              <NavItem>
+                <Link className="nav-link" to="/stats">
+                  Stats
+                </Link>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
