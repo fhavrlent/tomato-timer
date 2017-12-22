@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { Count, Control, SecondControl } from '../../components/Timer/';
+import ding from '../../utils/ding.wav';
 import {
   startCountDown,
   countDown,
@@ -15,12 +16,13 @@ class Timer extends Component {
       if ('Notification' in window) {
         new Notification(type + ' time is up!');
       }
+      this.playNotification();
       document.title = 'Time is up';
       this.handleStopCount();
     }
     if (nextProps.timeLeft !== this.props.timeLeft) {
       document.title =
-        parseInt(moment(nextProps.timeLeft).minutes(), 0) + 1 + ' minutes left';
+        parseInt(moment(nextProps.timeLeft).minutes(), 0) + ' minutes left';
     }
   }
 
@@ -30,20 +32,22 @@ class Timer extends Component {
     return time;
   };
 
-  handleButtonClick = e => {
-    if ('Notification' in window && Notification.permission === 'granted') {
-      const { startCountDown, counterID } = this.props;
-      clearInterval(counterID);
-      startCountDown({
-        value: e.target.name,
-        counterID: this.timer(),
-        type: e.target.id
-      });
-    } else if ('Notification' in window) {
-      Notification.requestPermission();
-    }
+  playNotification = () => {
+    const audio = new Audio(ding);
+    audio.volume = 0.6;
+    audio.play();
   };
 
+  handleButtonClick = e => {
+    const { startCountDown, counterID } = this.props;
+    clearInterval(counterID);
+    startCountDown({
+      value: e.target.name,
+      counterID: this.timer(),
+      type: e.target.id
+    });
+
+  };
   handleStopCount = () => {
     const { stopCountDown, counterID } = this.props;
     document.title = 'Tomato Timer';
