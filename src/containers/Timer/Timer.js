@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { Alert } from 'reactstrap';
 import { Count, Control, SecondControl } from '../../components/Timer/';
 import ding from '../../utils/ding.wav';
 import {
@@ -46,7 +47,6 @@ class Timer extends Component {
       counterID: this.timer(),
       type: e.target.id
     });
-
   };
   handleStopCount = () => {
     const { stopCountDown, counterID } = this.props;
@@ -63,6 +63,9 @@ class Timer extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
+              <Alert color="warning">
+                This is a beta version, some things are still not working.
+              </Alert>
               <Control
                 pomodoro={pomodoro}
                 smallBreak={smallBreak}

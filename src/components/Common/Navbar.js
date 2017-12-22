@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 export class Navigation extends Component {
   constructor(props) {
@@ -27,21 +20,23 @@ export class Navigation extends Component {
     return (
       <div>
         <Navbar color="light" light fixed="top" expand="sm">
-          <NavbarBrand href="/">
+          <Link className="navbar-brand" to="/">
             <span role="img" aria-label="tomato-emoji">
               🍅
             </span>{' '}
             Tomato Timer
-          </NavbarBrand>
+          </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/settings/">Settings</NavLink>
+                <Link className="nav-link" to="/settings">
+                  Settings
+                </Link>
               </NavItem>
-              <NavItem>
-                <NavLink href="/stats/">Stats</NavLink>
-              </NavItem>
+              <Link className="nav-link" to="/stats">
+                Stats
+              </Link>
             </Nav>
           </Collapse>
         </Navbar>
