@@ -11,7 +11,8 @@ class Timer extends Component {
       smallBreak,
       longBreak,
       handleButtonClick,
-      handleStopCount
+      handleStopCount,
+      handleContinueCount
     } = this.props;
     return (
       <div className="main">
@@ -38,7 +39,10 @@ class Timer extends Component {
           <br />
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <SecondControl clickStop={handleStopCount} />
+              <SecondControl
+                clickStop={handleStopCount}
+                handleContinueCount={handleContinueCount}
+              />
             </div>
           </div>
         </div>
@@ -53,7 +57,8 @@ Timer.propTypes = {
   smallBreak: PropTypes.number.isRequired,
   longBreak: PropTypes.number.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
-  handleStopCount: PropTypes.func.isRequired
+  handleStopCount: PropTypes.func.isRequired,
+  handleContinueCount: PropTypes.func.isRequired
 };
 
 export default Timer;

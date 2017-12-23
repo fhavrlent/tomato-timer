@@ -25,7 +25,8 @@ const timerReducer = handleActions(
     }),
     [actions.stopCountDown]: (state, action) => ({
       ...state,
-      isCounting: false
+      isCounting: false,
+      counterID: null
     })
   },
   initState

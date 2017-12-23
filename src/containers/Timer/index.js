@@ -67,12 +67,24 @@ class TimerPage extends Component {
       type: e.target.id
     });
   };
+
   handleStopCount = () => {
     const { stopCountDown, counterID } = this.props;
     document.title = 'Tomato Timer';
     clearInterval(counterID);
     stopCountDown();
   };
+
+  handleContinueCount = () => {
+    const { timeLeft, type, counterID, startCountDown } = this.props;
+    clearInterval(counterID);
+    startCountDown({
+      value: timeLeft,
+      counterID: this.timer(),
+      type: type
+    });
+  };
+
   render() {
     const { timeLeft, pomodoro, smallBreak, longBreak } = this.props;
     return (
@@ -83,6 +95,7 @@ class TimerPage extends Component {
         longBreak={longBreak}
         handleButtonClick={this.handleButtonClick}
         handleStopCount={this.handleStopCount}
+        handleContinueCount={this.handleContinueCount}
       />
     );
   }

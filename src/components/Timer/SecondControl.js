@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
-const SecondControl = ({ clickStop }) => {
+const SecondControl = ({ clickStop, handleContinueCount }) => {
   return (
     <div className="text-center control-buttons">
-      <Button color="info" className="col-xs-3" onClick={null} size={'lg'}>
+      <Button
+        color="info"
+        className="col-xs-3"
+        onClick={handleContinueCount}
+        size={'lg'}
+      >
         Continue
       </Button>{' '}
       <Button
@@ -21,7 +26,8 @@ const SecondControl = ({ clickStop }) => {
 };
 
 SecondControl.propTypes = {
-  clickStop: PropTypes.func.isRequired
+  clickStop: PropTypes.func.isRequired,
+  handleContinueCount: PropTypes.func.isRequired
 };
 
 export default SecondControl;
