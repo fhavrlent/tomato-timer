@@ -58,6 +58,7 @@ class TimerPage extends Component {
     const { counterID } = this.props;
     clearInterval(counterID);
     stopCountDown();
+    document.title = 'Tomato Timer';
   }
 
   timer = () => {
