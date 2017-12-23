@@ -56,25 +56,11 @@ describe('Timer Reducer', () => {
   });
   it('change time left', () => {
     const stateBefore = {
-      type: null,
       timeLeft: 1500000
     };
-    const action = changeTimeLeft({ value: 10, name: 'pomodoro' });
+    const action = changeTimeLeft({ value: 600000 });
     const stateAfter = {
-      timeLeft: 600000,
-      type: null
-    };
-    expect(timerReducer(stateBefore, action), 'to equal', stateAfter);
-  });
-  it('will not change time left', () => {
-    const stateBefore = {
-      type: 'long break',
       timeLeft: 600000
-    };
-    const action = changeTimeLeft({ value: 10, name: 'pomodoro' });
-    const stateAfter = {
-      timeLeft: 600000,
-      type: 'long break'
     };
     expect(timerReducer(stateBefore, action), 'to equal', stateAfter);
   });

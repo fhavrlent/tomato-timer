@@ -6,17 +6,13 @@ import ding from '../../utils/ding.wav';
 import {
   startCountDown,
   countDown,
-  stopCountDown
+  stopCountDown,
+  changeTimeLeft
 } from '../../dispatchers/TimerActions';
 import Timer from './Timer';
 import './Timer.css';
 
 class TimerPage extends Component {
-  componentWillMount() {
-    if ('Notification' in window) {
-      Notification.requestPermission();
-    }
-  }
   static propTypes = {
     pomodoro: PropTypes.number.isRequired,
     smallBreak: PropTypes.number.isRequired,
@@ -27,8 +23,20 @@ class TimerPage extends Component {
     type: PropTypes.string,
     startCountDown: PropTypes.func.isRequired,
     countDown: PropTypes.func.isRequired,
-    stopCountDown: PropTypes.func.isRequired
+    stopCountDown: PropTypes.func.isRequired,
+    changeTimeLeft: PropTypes.func.isRequired
   };
+
+  componentWillMount() {
+    if ('Notification' in window) {
+      Notification.requestPermission();
+    }
+  }
+
+  componentDidMount() {
+    const { pomodoro, changeTimeLeft } = this.props;
+    changeTimeLeft({ value: pomodoro });
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
@@ -44,6 +52,13 @@ class TimerPage extends Component {
       document.title =
         parseInt(moment(nextProps.timeLeft).minutes(), 0) + ' minutes left';
     }
+  }
+
+  componentWillUnmount() {
+    const { counterID } = this.props;
+    clearInterval(counterID);
+    stopCountDown();
+    document.title = 'Tomato Timer';
   }
 
   timer = () => {
@@ -118,7 +133,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   startCountDown,
   countDown,
-  stopCountDown
+  stopCountDown,
+  changeTimeLeft
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerPage);
