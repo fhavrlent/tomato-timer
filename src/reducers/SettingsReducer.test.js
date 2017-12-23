@@ -1,6 +1,6 @@
 import expect from 'unexpected';
 import settingsReducer from './SettingsReducer';
-import { setTime } from '../dispatchers/SettingActions';
+import { setTime, reset } from '../dispatchers/SettingActions';
 
 describe('Settings Reducer', () => {
   it('sets pomodoro time to 20 minutes', () => {
@@ -32,6 +32,21 @@ describe('Settings Reducer', () => {
     const action = setTime({ value: 15, name: 'longBreak' });
     const stateAfter = {
       longBreak: 900000
+    };
+    expect(settingsReducer(stateBefore, action), 'to equal', stateAfter);
+  });
+
+  it('resets the values', () => {
+    const stateBefore = {
+      pomodoro: 63474568,
+      shortBreak: 6457457,
+      longBreak: 74574584
+    };
+    const action = reset();
+    const stateAfter = {
+      pomodoro: 1500000,
+      smallBreak: 300000,
+      longBreak: 600000
     };
     expect(settingsReducer(stateBefore, action), 'to equal', stateAfter);
   });
