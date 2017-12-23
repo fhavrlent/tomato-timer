@@ -4,7 +4,8 @@ import * as actions from '../dispatchers/SettingActions';
 const initState = {
   pomodoro: parseInt(localStorage.getItem('pomodoroTime'), 0) || 1500000,
   smallBreak: parseInt(localStorage.getItem('smallBreakTime'), 0) || 300000,
-  longBreak: parseInt(localStorage.getItem('longBreakTime'), 0) || 600000
+  longBreak: parseInt(localStorage.getItem('longBreakTime'), 0) || 600000,
+  darkMode: JSON.parse(localStorage.getItem('darkMode')) || false
 };
 
 const settingsReducer = handleActions(
@@ -24,7 +25,15 @@ const settingsReducer = handleActions(
       return {
         pomodoro: 1500000,
         smallBreak: 300000,
-        longBreak: 600000
+        longBreak: 600000,
+        darkMode: false
+      };
+    },
+    [actions.toggleDarkMode]: (state, action) => {
+      localStorage.setItem('darkMode', action.payload);
+      return {
+        ...state,
+        darkMode: action.payload
       };
     }
   },

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -15,9 +16,15 @@ export class Navigation extends Component {
     });
   };
   render() {
+    const { darkMode } = this.props;
     return (
       <div>
-        <Navbar color="light" light fixed="top" expand="sm">
+        <Navbar
+          color={darkMode ? 'primary' : 'light'}
+          className={darkMode ? 'navbar-dark' : 'navbar-light'}
+          fixed="top"
+          expand="sm"
+        >
           <Link className="navbar-brand" to="/">
             <span role="img" aria-label="tomato-emoji">
               🍅
@@ -45,4 +52,11 @@ export class Navigation extends Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = state => {
+  const { settings } = state;
+  return {
+    darkMode: settings.darkMode
+  };
+};
+
+export default connect(mapStateToProps)(Navigation);

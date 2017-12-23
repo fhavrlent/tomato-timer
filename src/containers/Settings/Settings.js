@@ -9,13 +9,16 @@ const Settings = ({
   longBreak,
   pomodoro,
   optionValues,
-  reset
+  reset,
+  onCheckboxChange,
+  style,
+  darkMode
 }) => {
   return (
-    <div className="main">
+    <div className="main" style={style}>
       <div className="container">
         <div className="row">
-          <div className="col-md-8 offset-md-2">
+          <div className="col-md-6 offset-md-4">
             <FormGroup>
               <Label for="pomodoro">Pomodoro</Label>
               <Input
@@ -52,6 +55,16 @@ const Settings = ({
                 {optionValues.map(e => <option key={e}>{e}</option>)}
               </Input>
             </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  onChange={onCheckboxChange}
+                  checked={darkMode}
+                />{' '}
+                Dark Mode
+              </Label>
+            </FormGroup>
             <Button color="primary" onClick={reset} size={'lg'}>
               Reset values
             </Button>{' '}
@@ -68,7 +81,10 @@ Settings.propTypes = {
   pomodoro: PropTypes.number.isRequired,
   shortBreak: PropTypes.number.isRequired,
   longBreak: PropTypes.number.isRequired,
-  optionValues: PropTypes.array.isRequired
+  optionValues: PropTypes.array.isRequired,
+  onCheckboxChange: PropTypes.func.isRequired,
+  style: PropTypes.object.isRequired,
+  darkMode: PropTypes.bool.isRequired
 };
 
 export default Settings;

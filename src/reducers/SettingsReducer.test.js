@@ -1,6 +1,6 @@
 import expect from 'unexpected';
 import settingsReducer from './SettingsReducer';
-import { setTime, reset } from '../dispatchers/SettingActions';
+import { setTime, reset, toggleDarkMode } from '../dispatchers/SettingActions';
 
 describe('Settings Reducer', () => {
   it('sets pomodoro time to 20 minutes', () => {
@@ -40,13 +40,25 @@ describe('Settings Reducer', () => {
     const stateBefore = {
       pomodoro: 63474568,
       shortBreak: 6457457,
-      longBreak: 74574584
+      longBreak: 74574584,
+      darkMode: true
     };
     const action = reset();
     const stateAfter = {
       pomodoro: 1500000,
       smallBreak: 300000,
-      longBreak: 600000
+      longBreak: 600000,
+      darkMode: false
+    };
+    expect(settingsReducer(stateBefore, action), 'to equal', stateAfter);
+  });
+  it('turns on dark mode', () => {
+    const stateBefore = {
+      darkMode: false
+    };
+    const action = toggleDarkMode(true);
+    const stateAfter = {
+      darkMode: true
     };
     expect(settingsReducer(stateBefore, action), 'to equal', stateAfter);
   });
