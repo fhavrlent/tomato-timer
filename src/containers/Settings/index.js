@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Settings from './Settings';
 import { setTime, reset } from '../../dispatchers/SettingActions';
-<<<<<<< HEAD
-=======
-import { changeTimeLeft } from '../../dispatchers/TimerActions';
->>>>>>> master
 
 class SettingsPage extends Component {
   static propTypes = {
