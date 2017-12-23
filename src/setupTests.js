@@ -1,5 +1,5 @@
 const localStorageMock = (() => {
-  let store = {};
+  let store = { darkMode: 'false' };
   return {
     getItem(key) {
       return store[key];

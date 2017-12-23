@@ -5,7 +5,7 @@ import SettingsPage from './containers/Settings';
 import { Redirect, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-const App = ({ children }) => {
+const App = () => {
   return (
     <div>
       <header>

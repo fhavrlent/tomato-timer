@@ -10,10 +10,11 @@ const Timer = ({
   longBreak,
   handleButtonClick,
   handleStopCount,
-  handleContinueCount
+  handleContinueCount,
+  style
 }) => {
   return (
-    <div className="main">
+    <div className="main" style={style}>
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
@@ -55,7 +56,8 @@ Timer.propTypes = {
   longBreak: PropTypes.number.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
   handleStopCount: PropTypes.func.isRequired,
-  handleContinueCount: PropTypes.func.isRequired
+  handleContinueCount: PropTypes.func.isRequired,
+  style: PropTypes.object.isRequired
 };
 
 export default Timer;

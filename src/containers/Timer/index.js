@@ -24,7 +24,8 @@ class TimerPage extends Component {
     startCountDown: PropTypes.func.isRequired,
     countDown: PropTypes.func.isRequired,
     stopCountDown: PropTypes.func.isRequired,
-    changeTimeLeft: PropTypes.func.isRequired
+    changeTimeLeft: PropTypes.func.isRequired,
+    darkMode: PropTypes.bool.isRequired
   };
 
   componentWillMount() {
@@ -101,7 +102,7 @@ class TimerPage extends Component {
   };
 
   render() {
-    const { timeLeft, pomodoro, smallBreak, longBreak } = this.props;
+    const { timeLeft, pomodoro, smallBreak, longBreak, darkMode } = this.props;
     return (
       <Timer
         timeLeft={timeLeft}
@@ -111,13 +112,14 @@ class TimerPage extends Component {
         handleButtonClick={this.handleButtonClick}
         handleStopCount={this.handleStopCount}
         handleContinueCount={this.handleContinueCount}
+        style={darkMode ? { background: 'black', color: 'whitesmoke' } : {}}
       />
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { pomodoro, smallBreak, longBreak } = state.settings;
+  const { pomodoro, smallBreak, longBreak, darkMode } = state.settings;
   const { timeLeft, isCounting, counterID, type } = state.timer;
   return {
     pomodoro,
@@ -126,7 +128,8 @@ const mapStateToProps = state => {
     timeLeft,
     isCounting,
     counterID,
-    type
+    type,
+    darkMode
   };
 };
 
