@@ -9,10 +9,24 @@ const initState = {
 
 const settingsReducer = handleActions(
   {
-    [actions.setTime]: (state, action) => ({
-      ...state,
-      [action.payload.name]: action.payload.value * 60000
-    })
+    [actions.setTime]: (state, action) => {
+      const value = action.payload.value * 60000;
+      localStorage.setItem(action.payload.name + 'Time', value);
+      return {
+        ...state,
+        [action.payload.name]: value
+      };
+    },
+    [actions.reset]: (state, action) => {
+      localStorage.setItem('pomodoroTime', 1500000);
+      localStorage.setItem('smallBreakTime', 300000);
+      localStorage.setItem('longBreakTime', 600000);
+      return {
+        pomodoro: 1500000,
+        smallBreak: 300000,
+        longBreak: 600000
+      };
+    }
   },
   initState
 );

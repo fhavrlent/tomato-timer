@@ -5,7 +5,8 @@ import * as actions from '../dispatchers/TimerActions';
 const initState = {
   isCounting: false,
   timeLeft: parseInt(localStorage.getItem('pomodoroTime'), 0) || 1500000,
-  counterID: null
+  counterID: null,
+  type: null
 };
 
 const timerReducer = handleActions(
@@ -25,8 +26,18 @@ const timerReducer = handleActions(
     }),
     [actions.stopCountDown]: (state, action) => ({
       ...state,
-      isCounting: false
-    })
+      isCounting: false,
+      counterID: null
+    }),
+    [actions.changeTimeLeft]: (state, action) => {
+      if (state.type === null && action.payload.name === 'pomodoro') {
+        return {
+          ...state,
+          timeLeft: action.payload.value * 60000
+        };
+      }
+      return { ...state };
+    }
   },
   initState
 );
