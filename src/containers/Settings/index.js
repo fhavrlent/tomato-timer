@@ -3,26 +3,28 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Settings from './Settings';
 import { setTime, reset } from '../../dispatchers/SettingActions';
-import { changeTimeLeft } from '../../dispatchers/TimerActions';
 
 class SettingsPage extends Component {
   static propTypes = {
     setTime: PropTypes.func.isRequired,
     smallBreak: PropTypes.number.isRequired,
     longBreak: PropTypes.number.isRequired,
-    pomodoro: PropTypes.number.isRequired,
-    changeTimeLeft: PropTypes.func.isRequired
+    pomodoro: PropTypes.number.isRequired
   };
 
   onChangeTime = e => {
-    const { setTime, changeTimeLeft } = this.props;
+    const { setTime } = this.props;
     const value = parseInt(e.target.value, 0);
     setTime({ value, name: e.target.name });
-    changeTimeLeft({ value, name: e.target.name });
+  };
+
+  onResetButton = () => {
+    const { reset } = this.props;
+    reset();
   };
 
   render() {
-    const { smallBreak, longBreak, pomodoro, reset } = this.props;
+    const { smallBreak, longBreak, pomodoro } = this.props;
     const optionValues = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
     return (
       <Settings
@@ -30,7 +32,7 @@ class SettingsPage extends Component {
         shortBreak={smallBreak}
         longBreak={longBreak}
         pomodoro={pomodoro}
-        reset={reset}
+        reset={this.onResetButton}
         optionValues={optionValues}
       />
     );
@@ -44,8 +46,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   setTime,
-  reset,
-  changeTimeLeft
+  reset
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);

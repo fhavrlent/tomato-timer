@@ -29,15 +29,10 @@ const timerReducer = handleActions(
       isCounting: false,
       counterID: null
     }),
-    [actions.changeTimeLeft]: (state, action) => {
-      if (state.type === null && action.payload.name === 'pomodoro') {
-        return {
-          ...state,
-          timeLeft: action.payload.value * 60000
-        };
-      }
-      return { ...state };
-    }
+    [actions.changeTimeLeft]: (state, action) => ({
+      ...state,
+      timeLeft: action.payload.value
+    })
   },
   initState
 );
