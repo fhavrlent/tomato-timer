@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from './components/Common/Navbar';
+import { Navigation } from './components/Common/';
 import TimerPage from './containers/Timer';
 import SettingsPage from './containers/Settings';
 import { Redirect, Switch, Route } from 'react-router-dom';
