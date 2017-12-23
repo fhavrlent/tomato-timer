@@ -3,19 +3,22 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Settings from './Settings';
 import { setTime, reset } from '../../dispatchers/SettingActions';
+import { changeTimeLeft } from '../../dispatchers/TimerActions';
 
 class SettingsPage extends Component {
   static propTypes = {
     setTime: PropTypes.func.isRequired,
     smallBreak: PropTypes.number.isRequired,
     longBreak: PropTypes.number.isRequired,
-    pomodoro: PropTypes.number.isRequired
+    pomodoro: PropTypes.number.isRequired,
+    changeTimeLeft: PropTypes.func.isRequired
   };
 
   onChangeTime = e => {
-    const { setTime } = this.props;
+    const { setTime, changeTimeLeft } = this.props;
     const value = parseInt(e.target.value, 0);
     setTime({ value, name: e.target.name });
+    changeTimeLeft({ value, name: e.target.name });
   };
 
   render() {
@@ -41,7 +44,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   setTime,
-  reset
+  reset,
+  changeTimeLeft
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
