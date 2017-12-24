@@ -3,7 +3,7 @@ import moment from 'moment';
 import * as actions from '../dispatchers/TimerActions';
 
 const initState = {
-  timeLeft: parseInt(localStorage.getItem('pomodoroTime'), 0) || 1500000,
+  timeLeft: 1500000,
   counterID: null,
   type: null
 };
