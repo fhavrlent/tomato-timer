@@ -15,7 +15,7 @@ const target = document.querySelector('#root');
 
 store.subscribe(
   throttle(() => {
-    saveState(store.getState());
+    saveState({ settings: store.getState().settings });
   }, 1000)
 );
 

@@ -96,12 +96,14 @@ class TimerPage extends Component {
 
   handleContinueCount = () => {
     const { timeLeft, type, counterID, startCountDown } = this.props;
-    clearInterval(counterID);
-    startCountDown({
-      value: timeLeft,
-      counterID: this.timer(),
-      type: type
-    });
+    if (timeLeft > 0 && type !== null) {
+      clearInterval(counterID);
+      startCountDown({
+        value: timeLeft,
+        counterID: this.timer(),
+        type: type
+      });
+    }
   };
 
   render() {
