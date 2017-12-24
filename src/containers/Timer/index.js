@@ -40,13 +40,7 @@ class TimerPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
-      const { type } = this.props;
-      if ('Notification' in window) {
-        new Notification(type + ' time is up!');
-      }
-      this.playNotification();
-      document.title = 'Time is up';
-      this.handleStopCount();
+      this.finishTimer();
     }
     if (nextProps.timeLeft !== this.props.timeLeft) {
       document.title =
@@ -60,6 +54,16 @@ class TimerPage extends Component {
     stopCountDown();
     document.title = 'Tomato Timer';
   }
+
+  finishTimer = () => {
+    const { type } = this.props;
+    if ('Notification' in window) {
+      new Notification(type + ' time is up!');
+    }
+    this.playNotification();
+    document.title = 'Time is up';
+    this.handleStopCount();
+  };
 
   timer = () => {
     const { countDown } = this.props;
