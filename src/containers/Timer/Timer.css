@@ -5,6 +5,10 @@
   height: 100vh;
 }
 
+h2 {
+  margin: 1rem !important;
+}
+
 @media all and (max-width: 575px) {
   .pomodoro-buttons,
   .control-buttons {
