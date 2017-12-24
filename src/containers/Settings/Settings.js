@@ -18,7 +18,7 @@ const Settings = ({
     <div className="main" style={style}>
       <div className="container">
         <div className="row">
-          <div className="col-md-6 offset-md-4">
+          <div className="col-md-6 offset-md-3">
             <FormGroup>
               <Label for="pomodoro">Pomodoro</Label>
               <Input
