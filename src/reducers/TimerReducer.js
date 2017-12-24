@@ -3,8 +3,7 @@ import moment from 'moment';
 import * as actions from '../dispatchers/TimerActions';
 
 const initState = {
-  isCounting: false,
-  timeLeft: parseInt(localStorage.getItem('pomodoroTime'), 0) || 1500000,
+  timeLeft: 1500000,
   counterID: null,
   type: null
 };
@@ -13,7 +12,6 @@ const timerReducer = handleActions(
   {
     [actions.startCountDown]: (state, action) => ({
       ...state,
-      isCounting: true,
       timeLeft: parseInt(action.payload.value, 0),
       counterID: action.payload.counterID,
       type: action.payload.type
@@ -26,7 +24,6 @@ const timerReducer = handleActions(
     }),
     [actions.stopCountDown]: (state, action) => ({
       ...state,
-      isCounting: false,
       counterID: null
     }),
     [actions.changeTimeLeft]: (state, action) => ({

@@ -18,7 +18,6 @@ class TimerPage extends Component {
     smallBreak: PropTypes.number.isRequired,
     longBreak: PropTypes.number.isRequired,
     timeLeft: PropTypes.number.isRequired,
-    isCounting: PropTypes.bool.isRequired,
     counterID: PropTypes.number,
     type: PropTypes.string,
     startCountDown: PropTypes.func.isRequired,
@@ -41,13 +40,7 @@ class TimerPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeLeft <= 0) {
-      const { type } = this.props;
-      if ('Notification' in window) {
-        new Notification(type + ' time is up!');
-      }
-      this.playNotification();
-      document.title = 'Time is up';
-      this.handleStopCount();
+      this.finishTimer();
     }
     if (nextProps.timeLeft !== this.props.timeLeft) {
       document.title =
@@ -61,6 +54,16 @@ class TimerPage extends Component {
     stopCountDown();
     document.title = 'Tomato Timer';
   }
+
+  finishTimer = () => {
+    const { type } = this.props;
+    if ('Notification' in window) {
+      new Notification(type + ' time is up!');
+    }
+    this.playNotification();
+    document.title = 'Time is up';
+    this.handleStopCount();
+  };
 
   timer = () => {
     const { countDown } = this.props;
@@ -93,12 +96,14 @@ class TimerPage extends Component {
 
   handleContinueCount = () => {
     const { timeLeft, type, counterID, startCountDown } = this.props;
-    clearInterval(counterID);
-    startCountDown({
-      value: timeLeft,
-      counterID: this.timer(),
-      type: type
-    });
+    if (timeLeft > 0 && type !== null) {
+      clearInterval(counterID);
+      startCountDown({
+        value: timeLeft,
+        counterID: this.timer(),
+        type: type
+      });
+    }
   };
 
   render() {
@@ -120,13 +125,12 @@ class TimerPage extends Component {
 
 const mapStateToProps = state => {
   const { pomodoro, smallBreak, longBreak, darkMode } = state.settings;
-  const { timeLeft, isCounting, counterID, type } = state.timer;
+  const { timeLeft, counterID, type } = state.timer;
   return {
     pomodoro,
     smallBreak,
     longBreak,
     timeLeft,
-    isCounting,
     counterID,
     type,
     darkMode

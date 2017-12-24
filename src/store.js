@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import { loadState } from './localStorage';
 
-const initialState = {};
+const persistedState = loadState();
 const enhancers = [];
 const middleware = [thunk];
 
@@ -16,6 +17,6 @@ if (process.env.NODE_ENV === 'development') {
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
-const store = createStore(rootReducer, initialState, composedEnhancers);
+const store = createStore(rootReducer, persistedState, composedEnhancers);
 
 export default store;
