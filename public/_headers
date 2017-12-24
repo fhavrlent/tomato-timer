@@ -1,4 +1,3 @@
 /*
   x-frame-options: SAMEORIGIN
   X-XSS-Protection: 1; mode=block
-  Content-Security-Policy: default-src *
