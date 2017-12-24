@@ -39,11 +39,7 @@ export class Navigation extends Component {
                   Settings
                 </Link>
               </NavItem>
-              <NavItem>
-                <Link className="nav-link" to="/stats">
-                  Stats
-                </Link>
-              </NavItem>
+              <NavItem />
             </Nav>
           </Collapse>
         </Navbar>
