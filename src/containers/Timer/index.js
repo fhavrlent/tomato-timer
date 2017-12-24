@@ -18,7 +18,6 @@ class TimerPage extends Component {
     smallBreak: PropTypes.number.isRequired,
     longBreak: PropTypes.number.isRequired,
     timeLeft: PropTypes.number.isRequired,
-    isCounting: PropTypes.bool.isRequired,
     counterID: PropTypes.number,
     type: PropTypes.string,
     startCountDown: PropTypes.func.isRequired,
@@ -120,13 +119,12 @@ class TimerPage extends Component {
 
 const mapStateToProps = state => {
   const { pomodoro, smallBreak, longBreak, darkMode } = state.settings;
-  const { timeLeft, isCounting, counterID, type } = state.timer;
+  const { timeLeft, counterID, type } = state.timer;
   return {
     pomodoro,
     smallBreak,
     longBreak,
     timeLeft,
-    isCounting,
     counterID,
     type,
     darkMode
