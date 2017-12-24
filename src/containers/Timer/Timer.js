@@ -23,17 +23,7 @@ const Timer = ({
               longBreak={longBreak}
               handleClick={handleButtonClick}
             />
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div className="col-md-8 offset-md-2">
             <Count timeLeft={timeLeft} />
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div className="col-md-8 offset-md-2">
             <SecondControl
               clickStop={handleStopCount}
               handleContinueCount={handleContinueCount}

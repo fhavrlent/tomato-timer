@@ -5,7 +5,7 @@
   height: 100vh;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 575px) {
   .pomodoro-buttons,
   .control-buttons {
     display: flex;
