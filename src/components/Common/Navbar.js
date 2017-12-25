@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export class Navigation extends Component {
+  static propTypes = {
+    darkMode: PropTypes.bool.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
