@@ -15,7 +15,8 @@ class SettingsPage extends Component {
     longBreak: PropTypes.number.isRequired,
     pomodoro: PropTypes.number.isRequired,
     toggleDarkMode: PropTypes.func.isRequired,
-    darkMode: PropTypes.bool.isRequired
+    darkMode: PropTypes.bool.isRequired,
+    reset: PropTypes.func.isRequired
   };
 
   onChangeTime = e => {
