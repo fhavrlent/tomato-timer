@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import throttle from 'lodash/throttle';
 import { BrowserRouter } from 'react-router-dom';
 import { saveState } from './localStorage';
+import registerServiceWorker from './registerServiceWorker';
 import store from './store';
 import App from './App.js';
 
@@ -27,3 +28,4 @@ render(
   </Provider>,
   target
 );
+registerServiceWorker();
