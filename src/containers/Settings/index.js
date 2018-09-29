@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Settings from './Settings';
+
+import { connect } from 'react-redux';
+
 import {
   setTime,
   reset,
   toggleDarkMode
 } from '../../dispatchers/SettingActions';
+import Settings from './Settings';
 
 class SettingsPage extends Component {
   static propTypes = {
@@ -19,10 +21,12 @@ class SettingsPage extends Component {
     reset: PropTypes.func.isRequired
   };
 
-  onChangeTime = e => {
+  onChangeTime = event => {
     const { setTime } = this.props;
-    const value = parseInt(e.target.value, 0);
-    setTime({ value, name: e.target.name });
+    const { target } = event;
+
+    const value = parseInt(target.value, 0);
+    setTime({ value, name: target.name });
   };
 
   onResetButton = () => {
@@ -30,14 +34,17 @@ class SettingsPage extends Component {
     reset();
   };
 
-  onCheckboxChange = e => {
+  onCheckboxChange = event => {
     const { toggleDarkMode } = this.props;
-    toggleDarkMode(e.target.checked);
+    const { target } = event;
+
+    toggleDarkMode(target.checked);
   };
 
   render() {
     const { smallBreak, longBreak, pomodoro, darkMode } = this.props;
     const optionValues = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+
     return (
       <Settings
         setTime={this.onChangeTime}
@@ -56,6 +63,7 @@ class SettingsPage extends Component {
 
 const mapStateToProps = state => {
   const { pomodoro, smallBreak, longBreak, darkMode } = state.settings;
+
   return { pomodoro, smallBreak, longBreak, darkMode };
 };
 
@@ -65,4 +73,7 @@ const mapDispatchToProps = {
   toggleDarkMode
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsPage);

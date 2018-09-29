@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Count, Control, SecondControl } from '../../components/Timer/';
 
 const Timer = ({

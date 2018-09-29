@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import moment from 'moment';
 import { connect } from 'react-redux';
-import ding from '../../utils/ding.wav';
+
 import {
   startCountDown,
   countDown,
@@ -10,6 +11,8 @@ import {
   changeTimeLeft
 } from '../../dispatchers/TimerActions';
 import Timer from './Timer';
+
+import ding from '../../utils/ding.wav';
 import './Timer.css';
 
 class TimerPage extends Component {
@@ -35,6 +38,7 @@ class TimerPage extends Component {
 
   componentDidMount() {
     const { pomodoro, changeTimeLeft } = this.props;
+
     changeTimeLeft({ value: pomodoro });
   }
 
@@ -68,6 +72,7 @@ class TimerPage extends Component {
   timer = () => {
     const { countDown } = this.props;
     const time = setInterval(() => countDown(), 1000);
+
     return time;
   };
 
@@ -108,6 +113,7 @@ class TimerPage extends Component {
 
   render() {
     const { timeLeft, pomodoro, smallBreak, longBreak, darkMode } = this.props;
+
     return (
       <Timer
         timeLeft={timeLeft}
@@ -124,8 +130,10 @@ class TimerPage extends Component {
 }
 
 const mapStateToProps = state => {
-  const { pomodoro, smallBreak, longBreak, darkMode } = state.settings;
-  const { timeLeft, counterID, type } = state.timer;
+  const { settings, timer } = state;
+  const { pomodoro, smallBreak, longBreak, darkMode } = settings;
+  const { timeLeft, counterID, type } = timer;
+
   return {
     pomodoro,
     smallBreak,
@@ -144,4 +152,7 @@ const mapDispatchToProps = {
   changeTimeLeft
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimerPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TimerPage);

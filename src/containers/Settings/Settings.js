@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Input, FormGroup, Label, Button } from 'reactstrap';
 import moment from 'moment';
 
@@ -28,7 +29,9 @@ const Settings = ({
                 value={moment(pomodoro).minutes()}
                 onChange={setTime}
               >
-                {optionValues.map(e => <option key={e}>{e}</option>)}
+                {optionValues.map(optioValue => (
+                  <option key={optioValue}>{optioValue}</option>
+                ))}
               </Input>
             </FormGroup>
             <FormGroup>
@@ -40,7 +43,9 @@ const Settings = ({
                 value={moment(shortBreak).minutes()}
                 onChange={setTime}
               >
-                {optionValues.map(e => <option key={e}>{e}</option>)}
+                {optionValues.map(optioValue => (
+                  <option key={optioValue}>{optioValue}</option>
+                ))}
               </Input>
             </FormGroup>
             <FormGroup>
@@ -52,7 +57,9 @@ const Settings = ({
                 value={moment(longBreak).minutes()}
                 onChange={setTime}
               >
-                {optionValues.map(e => <option key={e}>{e}</option>)}
+                {optionValues.map(optioValue => (
+                  <option key={optioValue}>{optioValue}</option>
+                ))}
               </Input>
             </FormGroup>
             <FormGroup check>
