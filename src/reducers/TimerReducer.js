@@ -1,6 +1,13 @@
 import { handleActions } from 'redux-actions';
-import moment from 'moment';
-import * as actions from '../dispatchers/TimerActions';
+import subSeconds from 'date-fns/sub_seconds';
+import getTime from 'date-fns/get_time';
+
+import {
+  changeTimeLeft,
+  countDown,
+  startCountDown,
+  stopCountDown
+} from '../dispatchers/TimerActions';
 
 const initState = {
   timeLeft: 1500000,
@@ -10,23 +17,21 @@ const initState = {
 
 const timerReducer = handleActions(
   {
-    [actions.startCountDown]: (state, action) => ({
+    [startCountDown]: (state, action) => ({
       ...state,
       timeLeft: parseInt(action.payload.value, 0),
       counterID: action.payload.counterID,
       type: action.payload.type
     }),
-    [actions.countDown]: (state, action) => ({
+    [countDown]: (state, action) => ({
       ...state,
-      timeLeft: moment(state.timeLeft)
-        .subtract(1, 's')
-        .valueOf()
+      timeLeft: getTime(subSeconds(state.timeLeft, 1))
     }),
-    [actions.stopCountDown]: (state, action) => ({
+    [stopCountDown]: (state, action) => ({
       ...state,
       counterID: null
     }),
-    [actions.changeTimeLeft]: (state, action) => ({
+    [changeTimeLeft]: (state, action) => ({
       ...state,
       timeLeft: action.payload.value
     })

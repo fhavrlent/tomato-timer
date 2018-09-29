@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
@@ -16,12 +17,12 @@ export class Navigation extends Component {
     };
   }
   toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    this.setState(state => ({ isOpen: !state.isOpen }));
   };
+
   render() {
     const { darkMode } = this.props;
+
     return (
       <div>
         <Navbar
@@ -55,6 +56,7 @@ export class Navigation extends Component {
 
 const mapStateToProps = state => {
   const { settings } = state;
+
   return {
     darkMode: settings.darkMode
   };

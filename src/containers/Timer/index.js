@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import moment from 'moment';
+import getMinutes from 'date-fns/get_minutes';
 import { connect } from 'react-redux';
 
 import {
@@ -43,12 +43,14 @@ class TimerPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.timeLeft <= 0) {
+    const { timeLeft } = nextProps;
+    const { timeLeft: propsTimeLeft } = this.props;
+
+    if (timeLeft <= 0) {
       this.finishTimer();
     }
-    if (nextProps.timeLeft !== this.props.timeLeft) {
-      document.title =
-        parseInt(moment(nextProps.timeLeft).minutes(), 0) + ' minutes left';
+    if (timeLeft !== propsTimeLeft) {
+      document.title = `${parseInt(getMinutes(timeLeft), 0)} minutes left`;
     }
   }
 
@@ -62,7 +64,7 @@ class TimerPage extends Component {
   finishTimer = () => {
     const { type } = this.props;
     if ('Notification' in window) {
-      new Notification(type + ' time is up!');
+      new Notification(`${type} time is up!`);
     }
     this.playNotification();
     document.title = 'Time is up';

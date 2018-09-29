@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+
+import format from 'date-fns/format';
 
 const Count = ({ timeLeft }) => {
-  return <h2 className="text-center">{moment(timeLeft).format('mm:ss')}</h2>;
+  return <h2 className="text-center">{format(timeLeft, 'mm:ss')}</h2>;
 };
 
 Count.propTypes = {

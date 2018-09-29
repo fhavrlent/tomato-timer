@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Input, FormGroup, Label, Button } from 'reactstrap';
-import moment from 'moment';
+import getMinutes from 'date-fns/get_minutes';
 
 const Settings = ({
   setTime,
@@ -26,7 +26,7 @@ const Settings = ({
                 type="select"
                 name="pomodoro"
                 id="pomodoro"
-                value={moment(pomodoro).minutes()}
+                value={getMinutes(pomodoro)}
                 onChange={setTime}
               >
                 {optionValues.map(optioValue => (
@@ -40,7 +40,7 @@ const Settings = ({
                 type="select"
                 name="smallBreak"
                 id="smallBreak"
-                value={moment(shortBreak).minutes()}
+                value={getMinutes(shortBreak)}
                 onChange={setTime}
               >
                 {optionValues.map(optioValue => (
@@ -54,7 +54,7 @@ const Settings = ({
                 type="select"
                 name="longBreak"
                 id="longBreak"
-                value={moment(longBreak).minutes()}
+                value={getMinutes(longBreak)}
                 onChange={setTime}
               >
                 {optionValues.map(optioValue => (

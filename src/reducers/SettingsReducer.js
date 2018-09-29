@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import * as actions from '../dispatchers/SettingActions';
+import { setTime, reset, toggleDarkMode } from '../dispatchers/SettingActions';
 
 const initState = {
   pomodoro: 1500000,
@@ -10,14 +10,14 @@ const initState = {
 
 const settingsReducer = handleActions(
   {
-    [actions.setTime]: (state, action) => {
+    [setTime]: (state, action) => {
       const value = action.payload.value * 60000;
       return {
         ...state,
         [action.payload.name]: value
       };
     },
-    [actions.reset]: (state, action) => {
+    [reset]: (state, action) => {
       return {
         pomodoro: 1500000,
         smallBreak: 300000,
@@ -25,7 +25,7 @@ const settingsReducer = handleActions(
         darkMode: false
       };
     },
-    [actions.toggleDarkMode]: (state, action) => {
+    [toggleDarkMode]: (state, action) => {
       return {
         ...state,
         darkMode: action.payload
