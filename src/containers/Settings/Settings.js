@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Input, FormGroup, Label, Button } from 'reactstrap';
 import getMinutes from 'date-fns/get_minutes';
 
+import { main, darkModeStyle } from '../Timer/Timer';
+
 const Settings = ({
   setTime,
   shortBreak,
@@ -12,11 +14,10 @@ const Settings = ({
   optionValues,
   reset,
   onCheckboxChange,
-  style,
-  darkMode
+  darkMode,
 }) => {
   return (
-    <div className="main" style={style}>
+    <div className={`${main} ${darkMode ? darkModeStyle : ''}`}>
       <div className="container">
         <div className="row">
           <div className="col-md-6 offset-md-3">
@@ -90,8 +91,7 @@ Settings.propTypes = {
   longBreak: PropTypes.number.isRequired,
   optionValues: PropTypes.array.isRequired,
   onCheckboxChange: PropTypes.func.isRequired,
-  style: PropTypes.object.isRequired,
-  darkMode: PropTypes.bool.isRequired
+  darkMode: PropTypes.bool.isRequired,
 };
 
 export default Settings;

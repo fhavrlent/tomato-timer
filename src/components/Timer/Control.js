@@ -3,9 +3,28 @@ import PropTypes from 'prop-types';
 
 import { Button } from 'reactstrap';
 
+import { css } from 'emotion';
+
+export const pomodoroButtons = css`
+  @media all and (max-width: 575px) {
+    & {
+      display: flex;
+
+      justify-content: space-evenly;
+
+      flex-direction: column;
+    }
+
+    & .btn {
+      margin: 2px;
+      min-width: 140px;
+    }
+  }
+`;
+
 const Control = ({ pomodoro, smallBreak, longBreak, handleClick }) => {
   return (
-    <div className="text-center pomodoro-buttons">
+    <div className={`text-center ${pomodoroButtons}`}>
       <Button
         color="success"
         name={pomodoro}
@@ -41,7 +60,7 @@ Control.propTypes = {
   pomodoro: PropTypes.number.isRequired,
   smallBreak: PropTypes.number.isRequired,
   longBreak: PropTypes.number.isRequired,
-  handleClick: PropTypes.func.isRequired
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Control;

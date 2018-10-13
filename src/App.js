@@ -6,8 +6,6 @@ import { Navigation } from './components/Common/';
 import TimerPage from './containers/Timer';
 import SettingsPage from './containers/Settings';
 
-import './App.css';
-
 const App = () => {
   return (
     <div>

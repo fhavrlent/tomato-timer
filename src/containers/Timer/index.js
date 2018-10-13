@@ -8,12 +8,11 @@ import {
   startCountDown,
   countDown,
   stopCountDown,
-  changeTimeLeft
+  changeTimeLeft,
 } from '../../dispatchers/TimerActions';
 import Timer from './Timer';
 
 import ding from '../../utils/ding.wav';
-import './Timer.css';
 
 class TimerPage extends Component {
   static propTypes = {
@@ -27,7 +26,7 @@ class TimerPage extends Component {
     countDown: PropTypes.func.isRequired,
     stopCountDown: PropTypes.func.isRequired,
     changeTimeLeft: PropTypes.func.isRequired,
-    darkMode: PropTypes.bool.isRequired
+    darkMode: PropTypes.bool.isRequired,
   };
 
   componentWillMount() {
@@ -90,7 +89,7 @@ class TimerPage extends Component {
     startCountDown({
       value: e.target.name,
       counterID: this.timer(),
-      type: e.target.id
+      type: e.target.id,
     });
   };
 
@@ -108,7 +107,7 @@ class TimerPage extends Component {
       startCountDown({
         value: timeLeft,
         counterID: this.timer(),
-        type: type
+        type: type,
       });
     }
   };
@@ -125,7 +124,7 @@ class TimerPage extends Component {
         handleButtonClick={this.handleButtonClick}
         handleStopCount={this.handleStopCount}
         handleContinueCount={this.handleContinueCount}
-        style={darkMode ? { background: 'black', color: 'whitesmoke' } : {}}
+        darkMode={darkMode}
       />
     );
   }
@@ -143,7 +142,7 @@ const mapStateToProps = state => {
     timeLeft,
     counterID,
     type,
-    darkMode
+    darkMode,
   };
 };
 
@@ -151,10 +150,10 @@ const mapDispatchToProps = {
   startCountDown,
   countDown,
   stopCountDown,
-  changeTimeLeft
+  changeTimeLeft,
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(TimerPage);
