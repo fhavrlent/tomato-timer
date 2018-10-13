@@ -1,7 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { css } from 'emotion';
+
 import { Count, Control, SecondControl } from '../../components/Timer/';
+
+export const main = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
+
+export const darkModeStyle = css`
+  background: black;
+  color: whitesmoke;
+`;
 
 const Timer = ({
   timeLeft,
@@ -11,10 +25,10 @@ const Timer = ({
   handleButtonClick,
   handleStopCount,
   handleContinueCount,
-  style
+  darkMode,
 }) => {
   return (
-    <div className="main" style={style}>
+    <div className={`${main} ${darkMode ? darkModeStyle : ''}`}>
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
@@ -44,7 +58,7 @@ Timer.propTypes = {
   handleButtonClick: PropTypes.func.isRequired,
   handleStopCount: PropTypes.func.isRequired,
   handleContinueCount: PropTypes.func.isRequired,
-  style: PropTypes.object.isRequired
+  darkMode: PropTypes.bool.isRequired,
 };
 
 export default Timer;
