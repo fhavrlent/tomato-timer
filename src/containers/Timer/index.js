@@ -29,7 +29,9 @@ class TimerPage extends Component {
     darkMode: PropTypes.bool.isRequired,
   };
 
-  componentWillMount() {
+  constructor() {
+    super();
+
     if ('Notification' in window) {
       Notification.requestPermission();
     }
@@ -41,8 +43,8 @@ class TimerPage extends Component {
     changeTimeLeft({ value: pomodoro });
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { timeLeft } = nextProps;
+  componentDidUpdate(prevProps) {
+    const { timeLeft } = prevProps;
     const { timeLeft: propsTimeLeft } = this.props;
 
     if (timeLeft <= 0) {
