@@ -5,6 +5,17 @@ import getMinutes from 'date-fns/get_minutes';
 import { connect } from 'react-redux';
 
 import {
+  getPomodoro,
+  getSmallBreak,
+  getLongBreak,
+  getDarkMode,
+} from '../../reducers/SettingsReducer';
+import {
+  getTimeLeft,
+  getCounterID,
+  getType,
+} from '../../reducers/TimerReducer';
+import {
   startCountDown,
   countDown,
   stopCountDown,
@@ -132,21 +143,15 @@ class TimerPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { settings, timer } = state;
-  const { pomodoro, smallBreak, longBreak, darkMode } = settings;
-  const { timeLeft, counterID, type } = timer;
-
-  return {
-    pomodoro,
-    smallBreak,
-    longBreak,
-    timeLeft,
-    counterID,
-    type,
-    darkMode,
-  };
-};
+const mapStateToProps = state => ({
+  pomodoro: getPomodoro(state),
+  smallBreak: getSmallBreak(state),
+  longBreak: getLongBreak(state),
+  timeLeft: getTimeLeft(state),
+  counterID: getCounterID(state),
+  type: getType(state),
+  darkMode: getDarkMode(state),
+});
 
 const mapDispatchToProps = {
   startCountDown,

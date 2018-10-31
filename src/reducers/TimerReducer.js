@@ -40,3 +40,7 @@ const timerReducer = handleActions(
 );
 
 export default timerReducer;
+
+export const getTimeLeft = state => state.timer.timeLeft
+export const getCounterID = state => state.timer.counterID
+export const getType = state => state.timer.type 

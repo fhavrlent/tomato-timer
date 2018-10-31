@@ -6,8 +6,14 @@ import { connect } from 'react-redux';
 import {
   setTime,
   reset,
-  toggleDarkMode
+  toggleDarkMode,
 } from '../../dispatchers/SettingActions';
+import {
+  getPomodoro,
+  getSmallBreak,
+  getLongBreak,
+  getDarkMode,
+} from '../../reducers/SettingsReducer';
 import Settings from './Settings';
 
 class SettingsPage extends Component {
@@ -18,7 +24,7 @@ class SettingsPage extends Component {
     pomodoro: PropTypes.number.isRequired,
     toggleDarkMode: PropTypes.func.isRequired,
     darkMode: PropTypes.bool.isRequired,
-    reset: PropTypes.func.isRequired
+    reset: PropTypes.func.isRequired,
   };
 
   onChangeTime = event => {
@@ -61,19 +67,20 @@ class SettingsPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { pomodoro, smallBreak, longBreak, darkMode } = state.settings;
-
-  return { pomodoro, smallBreak, longBreak, darkMode };
-};
+const mapStateToProps = state => ({
+  pomodoro: getPomodoro(state),
+  smallBreak: getSmallBreak(state),
+  longBreak: getLongBreak(state),
+  darkMode: getDarkMode(state),
+});
 
 const mapDispatchToProps = {
   setTime,
   reset,
-  toggleDarkMode
+  toggleDarkMode,
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(SettingsPage);

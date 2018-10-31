@@ -5,15 +5,17 @@ import { connect } from 'react-redux';
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import { getDarkMode } from '../../reducers/SettingsReducer';
+
 export class Navigation extends Component {
   static propTypes = {
-    darkMode: PropTypes.bool.isRequired
+    darkMode: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
   toggle = () => {
@@ -54,12 +56,8 @@ export class Navigation extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { settings } = state;
-
-  return {
-    darkMode: settings.darkMode
-  };
-};
+const mapStateToProps = state => ({
+  darkMode: getDarkMode(state),
+});
 
 export default connect(mapStateToProps)(Navigation);
